@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,7 +18,9 @@ import com.example.weather_competition_1632.ui.theme.Texts
 
 @Composable
 fun WeatherCard(prefectureName: String) {
-    Column {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Texts.Header(text = prefectureName)
         Row(Modifier.padding(4.dp)) {
             Image(

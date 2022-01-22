@@ -2,11 +2,13 @@ package com.example.weather_competition_1632
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -14,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.example.weather_competition_1632.ui.theme.AppTheme
 import com.example.weather_competition_1632.ui.theme.Texts
 import com.example.weather_competition_1632.ui.theme.Weather
+import java.util.*
 
 @Composable
 fun WeatherCard(prefectureName: String) {
@@ -96,6 +99,38 @@ fun OneHourForecastCell(
     }
 }
 
+@Composable
+fun WeeklyForecast() {
+    val forecasts: List<WeekDayForecast> = (1..7).map { date ->
+        WeekDayForecast.getRandom(date)
+    }
+
+    LazyColumn {
+        items(forecasts) { forecast ->
+            WeekdayForecastCell(forecast = forecast)
+        }
+    }
+}
+
+@Composable
+fun WeekdayForecastCell(
+    forecast: WeekDayForecast
+) {
+    Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.size(300.dp, 30.dp)
+    ) {
+        Texts.Description(text = "${forecast.day}日")
+        Image(
+            painter = painterResource(id = forecast.weather.image()),
+            contentDescription = "",
+            modifier = Modifier.fillMaxHeight()
+        )
+        Texts.Description(text = "最高 ${forecast.maxTemperature}℃ / 最低 ${forecast.minTemperature}℃")
+    }
+}
+
 data class OneHourForecast(
     val time: String,
     val weather: Weather,
@@ -117,6 +152,28 @@ data class OneHourForecast(
     }
 }
 
+data class WeekDayForecast(
+    val day: String,
+    val weather: Weather,
+    val maxTemperature: Int,
+    val minTemperature: Int
+) {
+    /**
+     * デモのためランダムの天気を生成する
+     */
+    companion object {
+
+        fun getRandom(date: Int): WeekDayForecast {
+            return WeekDayForecast(
+                date.toString(),
+                Weather.random(),
+                (-10..20).random(),
+                (-10..20).random()
+            )
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
@@ -130,5 +187,14 @@ fun DefaultPreview() {
 fun OneDayForecastPreview() {
     AppTheme {
         OneDayForecast()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun WeeklyForecastPreview() {
+    AppTheme {
+        WeeklyForecast()
+//        WeekdayForecastCell()
     }
 }

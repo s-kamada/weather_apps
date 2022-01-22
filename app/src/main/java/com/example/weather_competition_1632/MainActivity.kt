@@ -32,6 +32,7 @@ class MainActivity : ComponentActivity() {
                     Column {
                         WeatherCard("青森市")
                         OneDayForecast()
+                        WeeklyForecast()
                     }
                 }
             }

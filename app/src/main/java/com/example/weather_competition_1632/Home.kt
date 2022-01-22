@@ -3,6 +3,7 @@ package com.example.weather_competition_1632
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -65,8 +66,14 @@ fun ImageWithText(
 
 @Composable
 fun OneDayForecast() {
-    LazyRow {
+    val forecasts: List<OneHourForecast> = (0..24).map { hour ->
+        OneHourForecast.getRandom(hour)
+    }
 
+    LazyRow {
+        items(forecasts) { forecast ->
+            OneHourForecastCell(forecast = forecast)
+        }
     }
 }
 
@@ -75,7 +82,7 @@ fun OneHourForecastCell(
     forecast: OneHourForecast
 ) {
     Column(
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.size(28.dp, 60.dp)
     ) {
@@ -93,7 +100,22 @@ data class OneHourForecast(
     val time: String,
     val weather: Weather,
     val temperature: String
-)
+) {
+
+    /**
+     * デモのためランダムの天気を生成する
+     */
+    companion object {
+
+        fun getRandom(time: Int): OneHourForecast {
+            return OneHourForecast(
+                "${time}時",
+                Weather.random(),
+                "${(-10..20).random()}℃"
+            )
+        }
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
@@ -107,12 +129,6 @@ fun DefaultPreview() {
 @Composable
 fun OneDayForecastPreview() {
     AppTheme {
-        OneHourForecastCell(
-            OneHourForecast(
-                time = "20時",
-                weather = Weather.CLOUDY,
-                temperature = "7℃"
-            )
-        )
+        OneDayForecast()
     }
 }

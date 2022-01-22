@@ -18,4 +18,10 @@ enum class Weather {
             STORMY -> R.drawable.ic_heavy_rainy
         }
     }
+
+    companion object {
+        fun random(): Weather {
+            return values().toList().shuffled().first()
+        }
+    }
 }

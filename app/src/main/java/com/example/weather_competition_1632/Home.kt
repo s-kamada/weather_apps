@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.weather_competition_1632.ui.theme.AppTheme
 import com.example.weather_competition_1632.ui.theme.Texts
+import com.example.weather_competition_1632.ui.theme.Weather
 
 @Composable
 fun WeatherCard(prefectureName: String) {
@@ -61,10 +62,48 @@ fun ImageWithText(
     }
 }
 
+@Composable
+fun OneDayForecast() {
+
+}
+
+@Composable
+fun OneHourForecast(
+    time: String,
+    weather: Weather,
+    temperature: String
+) {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.size(28.dp, 60.dp)
+    ) {
+        Texts.Description(text = time)
+        Image(
+            painter = painterResource(id = weather.image()),
+            contentDescription = "",
+            modifier = Modifier.fillMaxWidth()
+        )
+        Texts.Description(text = temperature)
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     AppTheme {
         WeatherCard("青森市")
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun OneDayForecastPreview() {
+    AppTheme {
+        OneHourForecast(
+            time = "20時",
+            weather = Weather.CLOUDY,
+            temperature = "7℃"
+        )
     }
 }

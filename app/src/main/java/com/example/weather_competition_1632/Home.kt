@@ -17,14 +17,14 @@ fun WeatherCard(prefectureName: String) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Texts.Header(text = prefectureName)
+        Texts.Body(text = prefectureName)
         ImageWithText(
             image = R.drawable.ic_cloudy,
-            text = "どんよりとした雲",
+            text = "曇り",
             height = 24.dp,
             style = Texts.Style.BODY
         )
-        Texts.Header(text = "-3℃")
+        Texts.Header(text = "-3 ℃")
         Texts.Description(text = "最高 4℃ / 最低 -5℃")
         Texts.Description(text = "1013 hPa 69%")
         ImageWithText(
@@ -44,10 +44,10 @@ fun ImageWithText(
     style: Texts.Style
 ) {
     Row(
+        horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-            .padding(4.dp)
-            .size(100.dp, 16.dp)
+            .size(100.dp, height)
     ) {
         Image(
             painterResource(image),

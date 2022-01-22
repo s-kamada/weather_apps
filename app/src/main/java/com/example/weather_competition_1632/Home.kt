@@ -2,6 +2,7 @@ package com.example.weather_competition_1632
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -64,29 +65,35 @@ fun ImageWithText(
 
 @Composable
 fun OneDayForecast() {
+    LazyRow {
 
+    }
 }
 
 @Composable
-fun OneHourForecast(
-    time: String,
-    weather: Weather,
-    temperature: String
+fun OneHourForecastCell(
+    forecast: OneHourForecast
 ) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.size(28.dp, 60.dp)
     ) {
-        Texts.Description(text = time)
+        Texts.Description(text = forecast.time)
         Image(
-            painter = painterResource(id = weather.image()),
+            painter = painterResource(id = forecast.weather.image()),
             contentDescription = "",
             modifier = Modifier.fillMaxWidth()
         )
-        Texts.Description(text = temperature)
+        Texts.Description(text = forecast.temperature)
     }
 }
+
+data class OneHourForecast(
+    val time: String,
+    val weather: Weather,
+    val temperature: String
+)
 
 @Preview(showBackground = true)
 @Composable
@@ -100,10 +107,12 @@ fun DefaultPreview() {
 @Composable
 fun OneDayForecastPreview() {
     AppTheme {
-        OneHourForecast(
-            time = "20時",
-            weather = Weather.CLOUDY,
-            temperature = "7℃"
+        OneHourForecastCell(
+            OneHourForecast(
+                time = "20時",
+                weather = Weather.CLOUDY,
+                temperature = "7℃"
+            )
         )
     }
 }

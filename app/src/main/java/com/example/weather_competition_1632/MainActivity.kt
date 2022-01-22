@@ -29,7 +29,10 @@ class MainActivity : ComponentActivity() {
             AppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    WeatherCard("青森市")
+                    Column {
+                        WeatherCard("青森市")
+                        OneDayForecast()
+                    }
                 }
             }
         }

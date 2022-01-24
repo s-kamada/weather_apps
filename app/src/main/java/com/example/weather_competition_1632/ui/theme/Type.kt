@@ -16,7 +16,7 @@ val Typography = Typography(
         letterSpacing = 0.sp
     ),
     h6 = TextStyle(
-        fontFamily = GeneralFont,   
+        fontFamily = GeneralFont,
         fontWeight = FontWeight.Medium,
         fontSize = 20.sp,
         letterSpacing = 0.15.sp

@@ -14,6 +14,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.weather_competition_1632.ui.theme.AppTheme
 import com.example.weather_competition_1632.ui.theme.Texts
 import com.example.weather_competition_1632.ui.theme.WeekDayForecast
 
@@ -69,5 +71,13 @@ fun WeekdayForecastCell(
                 )
             )
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun WeeklyForecastPreview() {
+    AppTheme {
+        WeeklyForecast(WeatherBusinessModel.mock().weeklyForecast)
     }
 }

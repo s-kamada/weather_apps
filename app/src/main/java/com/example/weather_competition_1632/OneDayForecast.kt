@@ -11,6 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.weather_competition_1632.ui.theme.AppTheme
 import com.example.weather_competition_1632.ui.theme.OneHourForecast
 import com.example.weather_competition_1632.ui.theme.Texts
 
@@ -54,5 +56,13 @@ fun OneHourForecastCell(
                 .padding(imagePadding)
         )
         Texts.Description(text = forecast.temperature)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun OneDayForecastPreview() {
+    AppTheme {
+        OneDayForecast(WeatherBusinessModel.mock().oneDayForecast)
     }
 }

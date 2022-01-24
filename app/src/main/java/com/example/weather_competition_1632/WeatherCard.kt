@@ -85,19 +85,3 @@ fun DefaultPreview() {
         WeatherCard(WeatherBusinessModel.mock())
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun OneDayForecastPreview() {
-    AppTheme {
-        OneDayForecast(WeatherBusinessModel.mock().oneDayForecast)
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun WeeklyForecastPreview() {
-    AppTheme {
-        WeeklyForecast(WeatherBusinessModel.mock().weeklyForecast)
-    }
-}

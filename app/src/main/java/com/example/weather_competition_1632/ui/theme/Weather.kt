@@ -72,7 +72,11 @@ data class WeekDayForecast(
     val day: Int,
     val weather: Weather,
     val maxTemperature: Int,
-    val minTemperature: Int
+    val minTemperature: Int,
+    val pressure: Int,
+    val humidity: Int,
+    val windDirection: String,
+    val windSpeed: Float
 ) {
     /**
      * デモのためランダムの天気を生成する
@@ -84,7 +88,11 @@ data class WeekDayForecast(
                 date,
                 Weather.random(),
                 WeatherBusinessModel.mockTemp(),
-                WeatherBusinessModel.mockTemp()
+                WeatherBusinessModel.mockTemp(),
+                WeatherBusinessModel.mockPressure(),
+                WeatherBusinessModel.mockHumidity(),
+                "南西",
+                0.5f
             )
         }
     }

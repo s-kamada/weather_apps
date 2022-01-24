@@ -39,15 +39,16 @@ data class WeatherBusinessModel(
             )
         }
 
+        // TODO: Eliminate cycling of Weather.kt and function references
         fun mockTemp(from: Int = -10, to: Int = 20): Int {
             return random(from, to)
         }
 
-        private fun mockPressure(from: Int = 1000, to: Int = 1020): Int {
+        fun mockPressure(from: Int = 1000, to: Int = 1020): Int {
             return random(from, to)
         }
 
-        private fun mockHumidity(from: Int = 40, to: Int = 70): Int {
+        fun mockHumidity(from: Int = 40, to: Int = 70): Int {
             return random(from, to)
         }
 

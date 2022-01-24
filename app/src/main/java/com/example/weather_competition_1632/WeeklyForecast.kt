@@ -110,6 +110,33 @@ fun WeekDayForecastCollapsed(
 fun WeekDayForecastExpanded(
     forecast: WeekDayForecast
 ) {
+    val iconSize = dimensionResource(id = R.dimen.weather_icon_size_l)
+
+    Column {
+        Row {
+            Texts.Body(text = "1月 ${forecast.day}日")
+            Image(
+                painter = painterResource(id = forecast.weather.image()), "",
+                modifier = Modifier.size(iconSize)
+            )
+            Texts.Description(text = forecast.weather.description())
+        }
+        Row {
+            Texts.Description(
+                text = stringResource(id = R.string.temperature_max_min, forecast.maxTemperature, forecast.minTemperature)
+            )
+        }
+        Row {
+            Texts.Description(
+                text = stringResource(id = R.string.pressure_and_humidity, forecast.pressure, forecast.humidity)
+            )
+        }
+        Row {
+            Texts.Description(
+                text = stringResource(id = R.string.wind_direction_speed, forecast.windDirection, forecast.windSpeed)
+            )
+        }
+    }
 }
 
 @ExperimentalAnimationApi

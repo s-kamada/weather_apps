@@ -3,6 +3,9 @@
 
     <dimen name="dimen_none">0dp</dimen>
 
+    <dimen name="weather_icon_size_l">68dp</dimen>
+    <dimen name="weather_icon_size_m">34dp</dimen>
+
     <dimen name="card_elevation">8dp</dimen>
     <dimen name="card_padding">80dp</dimen>
     <dimen name="card_contents_padding">16dp</dimen>

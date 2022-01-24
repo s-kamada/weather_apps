@@ -1,6 +1,8 @@
 package com.example.weather_competition_1632
 
-import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.*
+import androidx.compose.animation.core.keyframes
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -15,10 +17,12 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntSize
 import com.example.weather_competition_1632.ui.theme.AppTheme
 import com.example.weather_competition_1632.ui.theme.Texts
 import com.example.weather_competition_1632.ui.theme.WeekDayForecast
 
+@ExperimentalAnimationApi
 @Composable
 fun WeeklyForecast(
     forecast: List<WeekDayForecast>
@@ -36,44 +40,79 @@ fun WeeklyForecast(
     }
 }
 
+@ExperimentalAnimationApi
 @Composable
 fun WeekdayForecastCell(
+    forecast: WeekDayForecast
+) {
+    var isExpanded by remember { mutableStateOf(false) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .animateContentSize()
+            .clickable { isExpanded = !isExpanded }
+    ) {
+        // TODO: find alternative. this is experimental API
+        AnimatedContent(
+            targetState = isExpanded,
+            transitionSpec = {
+                fadeIn(animationSpec = tween(150, 150)) with
+                        fadeOut(animationSpec = tween(150, 150)) using
+                        SizeTransform { initialSize, targetSize ->
+                            keyframes {
+                                IntSize(initialSize.width, targetSize.height) at 150
+                                durationMillis = 300
+                            }
+                        }
+            }
+        ) { isExpanded ->
+            when {
+                isExpanded -> WeekDayForecastExpanded(forecast = forecast)
+                else -> WeekDayForecastCollapsed(forecast = forecast)
+            }
+        }
+    }
+}
+
+@Composable
+fun WeekDayForecastCollapsed(
     forecast: WeekDayForecast
 ) {
     val cellHeight = dimensionResource(id = R.dimen.weekday_forecast_cell_height)
     val cellPadding = dimensionResource(id = R.dimen.weekday_forecast_cell_padding)
 
-    var isExpanded by remember { mutableStateOf(false) }
-
-    Column(
-        modifier = Modifier.fillMaxWidth().animateContentSize()
+    Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(cellHeight)
+            .padding(cellPadding)
     ) {
-        Row(
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(cellHeight)
-                .padding(cellPadding)
-                .clickable { isExpanded = !isExpanded }
-        ) {
-            Texts.Description(text = stringResource(id = R.string.day, forecast.day))
-            Image(
-                painter = painterResource(id = forecast.weather.image()),
-                contentDescription = "",
-                modifier = Modifier.fillMaxHeight()
+        Texts.Description(text = stringResource(id = R.string.day, forecast.day))
+        Image(
+            painter = painterResource(id = forecast.weather.image()),
+            contentDescription = "",
+            modifier = Modifier.fillMaxHeight()
+        )
+        Texts.Description(
+            text = stringResource(
+                id = R.string.temperature_max_min,
+                forecast.maxTemperature,
+                forecast.minTemperature
             )
-            Texts.Description(
-                text = stringResource(
-                    id = R.string.temperature_max_min,
-                    forecast.maxTemperature,
-                    forecast.minTemperature
-                )
-            )
-        }
+        )
     }
 }
 
+@Composable
+fun WeekDayForecastExpanded(
+    forecast: WeekDayForecast
+) {
+}
+
+@ExperimentalAnimationApi
 @Preview(showBackground = true)
 @Composable
 fun WeeklyForecastPreview() {

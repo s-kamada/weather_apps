@@ -44,7 +44,7 @@ fun WeatherCard(
             Texts.Description(text = stringResource(id = R.string.temperature_max_min, weather.maxTemp, weather.minTemp))
             Texts.Description(text = stringResource(id = R.string.pressure_and_humidity, weather.pressure, weather.humidity))
             ImageWithText(
-                image = R.drawable.ic_wind_soutuheast,
+                image = R.drawable.ic_wind_soutuheast_dark,
                 text = stringResource(id = R.string.wind_direction_speed, weather.windDirection, weather.windSpeed),
                 height = textHeight,
                 style = Texts.Style.DESCRIPTION

@@ -22,11 +22,11 @@ enum class Weather {
 
     fun image(): Int {
         return when (this) {
-            SUNNY -> R.drawable.ic_sunny
-            CLOUDY -> R.drawable.ic_cloudy
-            RAINY -> R.drawable.ic_rainy
-            SNOWY -> R.drawable.ic_snowy
-            STORMY -> R.drawable.ic_heavy_rainy
+            SUNNY -> R.drawable.ic_sunny_dark
+            CLOUDY -> R.drawable.ic_cloudy_dark
+            RAINY -> R.drawable.ic_rainy_dark
+            SNOWY -> R.drawable.ic_snowy_dark
+            STORMY -> R.drawable.ic_heavy_rainy_dark
         }
     }
 

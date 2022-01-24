@@ -54,7 +54,7 @@ class MainActivity : ComponentActivity() {
                 onClick = { weatherBusinessModel.value = WeatherBusinessModel.mock() },
                 modifier = Modifier.padding(buttonPading)
             ) {
-                Icon(painter = painterResource(id = R.drawable.ic_refresh), contentDescription = "")
+                Icon(painter = painterResource(id = R.drawable.ic_refresh_dark), contentDescription = "")
             }
 
             Column(

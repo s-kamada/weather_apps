@@ -1,5 +1,6 @@
 package com.example.weather_competition_1632
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -153,22 +154,32 @@ fun WeekdayForecastCell(
 
     var isExpanded by remember { mutableStateOf(false) }
 
-    Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(cellHeight)
-            .padding(cellPadding)
-            .clickable { isExpanded = !isExpanded }
+    Column(
+        modifier = Modifier.fillMaxWidth().animateContentSize()
     ) {
-        Texts.Description(text = stringResource(id = R.string.day, forecast.day))
-        Image(
-            painter = painterResource(id = forecast.weather.image()),
-            contentDescription = "",
-            modifier = Modifier.fillMaxHeight()
-        )
-        Texts.Description(text = stringResource(id = R.string.temperature_max_min, forecast.maxTemperature, forecast.minTemperature))
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(cellHeight)
+                .padding(cellPadding)
+                .clickable { isExpanded = !isExpanded }
+        ) {
+            Texts.Description(text = stringResource(id = R.string.day, forecast.day))
+            Image(
+                painter = painterResource(id = forecast.weather.image()),
+                contentDescription = "",
+                modifier = Modifier.fillMaxHeight()
+            )
+            Texts.Description(
+                text = stringResource(
+                    id = R.string.temperature_max_min,
+                    forecast.maxTemperature,
+                    forecast.minTemperature
+                )
+            )
+        }
     }
 }
 

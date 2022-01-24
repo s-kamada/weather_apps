@@ -120,3 +120,19 @@ fun WeeklyForecastPreview() {
         WeeklyForecast(WeatherBusinessModel.mock().weeklyForecast)
     }
 }
+
+@Preview(showBackground = true)
+@Composable
+fun WeekDatForecastCollapsedPreview() {
+    AppTheme {
+        WeekDayForecastCollapsed(forecast = WeatherBusinessModel.mock().weeklyForecast.first())
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun WeekDatForecastExpandedPreview() {
+    AppTheme {
+        WeekDayForecastExpanded(forecast = WeatherBusinessModel.mock().weeklyForecast.first())
+    }
+}

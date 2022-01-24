@@ -3,6 +3,7 @@ package com.example.weather_competition_1632
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,7 +21,7 @@ import com.example.weather_competition_1632.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
 
-
+    @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -31,6 +32,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    @ExperimentalAnimationApi
     @Composable
     fun Contents() {
         val buttonPading = dimensionResource(id = R.dimen.button_padding)

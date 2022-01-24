@@ -15,23 +15,25 @@ import androidx.compose.ui.unit.dp
 import com.example.weather_competition_1632.ui.theme.*
 
 @Composable
-fun WeatherCard(prefectureName: String) {
+fun WeatherCard(
+    weather: WeatherBusinessModel
+) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Texts.Body(text = prefectureName)
+        Texts.Body(text = weather.location)
         ImageWithText(
-            image = R.drawable.ic_cloudy,
-            text = "曇り",
+            image = weather.weather.image(),
+            text = weather.weather.description(),
             height = 24.dp,
             style = Texts.Style.BODY
         )
-        Texts.Header(text = "-3 ℃")
-        Texts.Description(text = "最高 4℃ / 最低 -5℃")
-        Texts.Description(text = "1013 hPa 69%")
+        Texts.Header(text = "${weather.temperature} ℃")
+        Texts.Description(text = "最高 ${weather.maxTemp}℃ / 最低 ${weather.minTemp}℃")
+        Texts.Description(text = "${weather.pressure} hPa ${weather.humidity}%")
         ImageWithText(
             image = R.drawable.ic_wind_soutuheast,
-            text = "南西 0.5 m/s",
+            text = "${weather.windDirection} ${weather.windSpeed} m/s",
             height = 16.dp,
             style = Texts.Style.DESCRIPTION
         )
@@ -64,13 +66,12 @@ fun ImageWithText(
 }
 
 @Composable
-fun OneDayForecast() {
-    val forecasts: List<OneHourForecast> = (0..24).map { hour ->
-        OneHourForecast.getRandom(hour)
-    }
+fun OneDayForecast(
+    forecast: List<OneHourForecast>
+) {
 
     LazyRow {
-        items(forecasts) { forecast ->
+        items(forecast) { forecast ->
             OneHourForecastCell(forecast = forecast)
         }
     }
@@ -96,15 +97,14 @@ fun OneHourForecastCell(
 }
 
 @Composable
-fun WeeklyForecast() {
-    val forecasts: List<WeekDayForecast> = (1..7).map { date ->
-        WeekDayForecast.getRandom(date)
-    }
+fun WeeklyForecast(
+    forecast: List<WeekDayForecast>
+) {
 
     LazyColumn(
         modifier = Modifier.fillMaxWidth()
     ) {
-        items(forecasts) { forecast ->
+        items(forecast) { forecast ->
             WeekdayForecastCell(forecast = forecast)
         }
     }
@@ -117,7 +117,9 @@ fun WeekdayForecastCell(
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.fillMaxWidth().height(30.dp)
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(30.dp)
     ) {
         Texts.Description(text = "${forecast.day}日")
         Image(
@@ -133,7 +135,7 @@ fun WeekdayForecastCell(
 @Composable
 fun DefaultPreview() {
     AppTheme {
-        WeatherCard("青森市")
+        WeatherCard(WeatherBusinessModel.mock())
     }
 }
 
@@ -141,7 +143,7 @@ fun DefaultPreview() {
 @Composable
 fun OneDayForecastPreview() {
     AppTheme {
-        OneDayForecast()
+        OneDayForecast(WeatherBusinessModel.mock().oneDayForecast)
     }
 }
 
@@ -149,6 +151,6 @@ fun OneDayForecastPreview() {
 @Composable
 fun WeeklyForecastPreview() {
     AppTheme {
-        WeeklyForecast()
+        WeeklyForecast(WeatherBusinessModel.mock().weeklyForecast)
     }
 }

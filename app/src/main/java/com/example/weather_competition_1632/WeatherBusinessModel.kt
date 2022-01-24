@@ -15,7 +15,7 @@ data class WeatherBusinessModel(
     val windDirection: String,
     val windSpeed: Float,
     val oneDayForecast: List<OneHourForecast>,
-    val weekDayForecast: List<WeekDayForecast>
+    val weeklyForecast: List<WeekDayForecast>
 ) {
 
     companion object {
@@ -35,7 +35,7 @@ data class WeatherBusinessModel(
                 windDirection = "南西",
                 windSpeed = 0.5f,
                 oneDayForecast = mockOneDayForecast(),
-                weekDayForecast = mockWeeklyForecast()
+                weeklyForecast = mockWeeklyForecast()
             )
         }
 

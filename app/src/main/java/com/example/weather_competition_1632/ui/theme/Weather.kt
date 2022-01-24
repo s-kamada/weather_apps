@@ -9,6 +9,16 @@ enum class Weather {
     SNOWY,
     STORMY;
 
+    fun description(): String {
+        return when (this) {
+            SUNNY -> "晴れ"
+            CLOUDY -> "曇り"
+            RAINY -> "雨"
+            SNOWY -> "雪"
+            STORMY -> "嵐"
+        }
+    }
+
     fun image(): Int {
         return when (this) {
             SUNNY -> R.drawable.ic_sunny

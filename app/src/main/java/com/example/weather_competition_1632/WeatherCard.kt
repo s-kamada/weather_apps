@@ -16,8 +16,7 @@ import com.example.weather_competition_1632.ui.theme.*
 
 @Composable
 fun WeatherCard(
-    weather: WeatherBusinessModel,
-    isDarkTheme: Boolean
+    weather: WeatherBusinessModel
 ) {
     val cardElevation = dimensionResource(id = R.dimen.card_contents_padding)
     val cardPadding = dimensionResource(id = R.dimen.card_padding)
@@ -36,7 +35,7 @@ fun WeatherCard(
         ) {
             Texts.Body(text = weather.location)
             ImageWithText(
-                image = weather.weather.image(isDarkTheme),
+                image = weather.weather.image(true),
                 text = weather.weather.description(),
                 height = textHeight,
                 style = Texts.Style.BODY
@@ -84,6 +83,6 @@ fun ImageWithText(
 @Composable
 fun DefaultPreview() {
     AppTheme {
-        WeatherCard(WeatherBusinessModel.mock(), true)
+        WeatherCard(WeatherBusinessModel.mock())
     }
 }

@@ -41,6 +41,7 @@ fun OneHourForecastCell(
     val cellHeight = dimensionResource(id = R.dimen.oneday_forecast_cell_height)
     val cellPadding = dimensionResource(id = R.dimen.oneday_forecast_cell_padding)
     val imagePadding = dimensionResource(id = R.dimen.oneday_forecast_cell_image_padding)
+    val color = if(isDarkTheme) Color.Black else Color.White
 
     Column(
         verticalArrangement = Arrangement.SpaceBetween,
@@ -49,7 +50,7 @@ fun OneHourForecastCell(
             .size(cellWidth, cellHeight)
             .padding(cellPadding)
     ) {
-        Texts.Description(text = forecast.time)
+        Texts.Description(text = forecast.time, color = color)
         Image(
             painter = painterResource(id = forecast.weather.image(isDarkTheme)),
             contentDescription = "",
@@ -57,7 +58,7 @@ fun OneHourForecastCell(
                 .fillMaxWidth()
                 .padding(imagePadding)
         )
-        Texts.Description(text = forecast.temperature)
+        Texts.Description(text = forecast.temperature, color = color)
     }
 }
 

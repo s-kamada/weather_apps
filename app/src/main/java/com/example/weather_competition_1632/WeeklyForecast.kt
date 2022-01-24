@@ -84,6 +84,7 @@ fun WeekDayForecastCollapsed(
 ) {
     val cellHeight = dimensionResource(id = R.dimen.weekday_forecast_cell_height)
     val cellPadding = dimensionResource(id = R.dimen.weekday_forecast_cell_padding)
+    val color = if (isDarkTheme) Color.Black else Color.White
 
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -93,7 +94,10 @@ fun WeekDayForecastCollapsed(
             .height(cellHeight)
             .padding(cellPadding)
     ) {
-        Texts.Description(text = stringResource(id = R.string.day, forecast.day))
+        Texts.Description(
+            text = stringResource(id = R.string.day, forecast.day),
+            color = color
+        )
         Image(
             painter = painterResource(id = forecast.weather.image(isDarkTheme)),
             contentDescription = "",
@@ -104,7 +108,8 @@ fun WeekDayForecastCollapsed(
                 id = R.string.temperature_max_min,
                 forecast.maxTemperature,
                 forecast.minTemperature
-            )
+            ),
+            color = color
         )
     }
 }
@@ -126,7 +131,9 @@ fun WeekDayForecastExpanded(
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth().padding(contentsPadding)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(contentsPadding)
         ) {
             Texts.Body(text = "1月 ${forecast.day}日")
             Image(
@@ -137,7 +144,9 @@ fun WeekDayForecastExpanded(
         }
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth().padding(contentsPadding)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(contentsPadding)
         ) {
             Texts.Description(
                 text = stringResource(id = R.string.temperature_max_min, forecast.maxTemperature, forecast.minTemperature)
@@ -145,7 +154,9 @@ fun WeekDayForecastExpanded(
         }
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth().padding(contentsPadding)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(contentsPadding)
         ) {
             Texts.Description(
                 text = stringResource(id = R.string.pressure_and_humidity, forecast.pressure, forecast.humidity)
@@ -153,7 +164,9 @@ fun WeekDayForecastExpanded(
         }
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth().padding(contentsPadding)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(contentsPadding)
         ) {
             Texts.Description(
                 text = stringResource(id = R.string.wind_direction_speed, forecast.windDirection, forecast.windSpeed)

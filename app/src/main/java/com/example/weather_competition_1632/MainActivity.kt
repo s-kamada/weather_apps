@@ -26,9 +26,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            AppTheme {
-                Contents()
-            }
+            Contents()
         }
     }
 
@@ -41,34 +39,39 @@ class MainActivity : ComponentActivity() {
         val isDarkTheme = remember { mutableStateOf(weatherBusinessModel.value.weather.isDarkTheme()) }
 
         // A surface container using the 'background' color from the theme
-        Surface(
-            color = MaterialTheme.colors.background,
-        ) {
-            // 背景画像を重ねる
-            Image(
-                painter = painterResource(id = weatherBusinessModel.value.weather.background()),
-                contentDescription = "",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxSize()
-            )
-
-            IconButton(
-                onClick = {
-                    val mock = WeatherBusinessModel.mock()
-                    weatherBusinessModel.value = mock
-                    isDarkTheme.value = mock.weather.isDarkTheme()
-                },
-                modifier = Modifier.padding(buttonPading)
+        AppTheme(isDarkTheme.value) {
+            Surface(
+                color = MaterialTheme.colors.background,
             ) {
-                Icon(painter = painterResource(id = R.drawable.ic_refresh_dark), contentDescription = "")
-            }
+                // 背景画像を重ねる
+                Image(
+                    painter = painterResource(id = weatherBusinessModel.value.weather.background()),
+                    contentDescription = "",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize()
+                )
 
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                WeatherCard(weatherBusinessModel.value, isDarkTheme.value)
-                OneDayForecast(weatherBusinessModel.value.oneDayForecast, isDarkTheme.value)
-                WeeklyForecast(weatherBusinessModel.value.weeklyForecast, isDarkTheme.value)
+                IconButton(
+                    onClick = {
+                        val mock = WeatherBusinessModel.mock()
+                        weatherBusinessModel.value = mock
+                        isDarkTheme.value = mock.weather.isDarkTheme()
+                    },
+                    modifier = Modifier.padding(buttonPading)
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_refresh_dark),
+                        contentDescription = ""
+                    )
+                }
+
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    WeatherCard(weatherBusinessModel.value)
+                    OneDayForecast(weatherBusinessModel.value.oneDayForecast, isDarkTheme.value)
+                    WeeklyForecast(weatherBusinessModel.value.weeklyForecast, isDarkTheme.value)
+                }
             }
         }
     }

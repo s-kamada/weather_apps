@@ -10,8 +10,8 @@ import com.example.weather_competition_1632.R
 
 // Set of Material typography styles to start with
 val GeneralFont = FontFamily.Default
-val DarkFontColor = Color(R.color.black)
-val LightFontColor = Color(R.color.white)
+val DarkFontColor = Color.Black
+val LightFontColor = Color.White
 val DarkTypography = Typography(
     h3 = TextStyle(
         fontFamily = GeneralFont,

@@ -25,7 +25,7 @@ data class WeatherBusinessModel(
          */
         fun mock(): WeatherBusinessModel {
             return WeatherBusinessModel(
-                location = "青森市",
+                location = "港区",
                 weather = Weather.random(),
                 temperature = mockTemp(),
                 maxTemp = mockTemp(),

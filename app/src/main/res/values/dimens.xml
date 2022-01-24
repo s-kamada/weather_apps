@@ -16,8 +16,9 @@
     <dimen name="oneday_forecast_cell_padding">8dp</dimen>
     <dimen name="oneday_forecast_cell_image_padding">4dp</dimen>
 
-    <dimen name="weekday_forecast_cell_height">50dp</dimen>
-    <dimen name="weekday_forecast_cell_padding">8dp</dimen>
+    <dimen name="weekday_forecast_cell_height">66dp</dimen>
+    <dimen name="weekday_forecast_cell_padding">16dp</dimen>
+    <dimen name="weekday_forecast_contents_padding">4dp</dimen>
 
     <dimen name="text_height_l">24dp</dimen>
     <dimen name="text_width_xxl">150dp</dimen>

@@ -111,9 +111,19 @@ fun WeekDayForecastExpanded(
     forecast: WeekDayForecast
 ) {
     val iconSize = dimensionResource(id = R.dimen.weather_icon_size_l)
+    val padding = dimensionResource(id = R.dimen.weekday_forecast_cell_padding)
+    val contentsPadding = dimensionResource(id = R.dimen.weekday_forecast_contents_padding)
 
-    Column {
-        Row {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(padding)
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth().padding(contentsPadding)
+        ) {
             Texts.Body(text = "1月 ${forecast.day}日")
             Image(
                 painter = painterResource(id = forecast.weather.image()), "",
@@ -121,17 +131,26 @@ fun WeekDayForecastExpanded(
             )
             Texts.Description(text = forecast.weather.description())
         }
-        Row {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth().padding(contentsPadding)
+        ) {
             Texts.Description(
                 text = stringResource(id = R.string.temperature_max_min, forecast.maxTemperature, forecast.minTemperature)
             )
         }
-        Row {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth().padding(contentsPadding)
+        ) {
             Texts.Description(
                 text = stringResource(id = R.string.pressure_and_humidity, forecast.pressure, forecast.humidity)
             )
         }
-        Row {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth().padding(contentsPadding)
+        ) {
             Texts.Description(
                 text = stringResource(id = R.string.wind_direction_speed, forecast.windDirection, forecast.windSpeed)
             )

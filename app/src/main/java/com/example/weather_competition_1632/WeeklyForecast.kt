@@ -25,7 +25,8 @@ import com.example.weather_competition_1632.ui.theme.WeekDayForecast
 @ExperimentalAnimationApi
 @Composable
 fun WeeklyForecast(
-    forecast: List<WeekDayForecast>
+    forecast: List<WeekDayForecast>,
+    isDarkTheme: Boolean
 ) {
     val borderWidth = dimensionResource(id = R.dimen.border_width_xs)
 
@@ -35,7 +36,7 @@ fun WeeklyForecast(
             .border(borderWidth, Color.Black)
     ) {
         items(forecast) { forecast ->
-            WeekdayForecastCell(forecast = forecast)
+            WeekdayForecastCell(forecast = forecast, isDarkTheme)
         }
     }
 }
@@ -43,7 +44,8 @@ fun WeeklyForecast(
 @ExperimentalAnimationApi
 @Composable
 fun WeekdayForecastCell(
-    forecast: WeekDayForecast
+    forecast: WeekDayForecast,
+    isDarkTheme: Boolean
 ) {
     var isExpanded by remember { mutableStateOf(false) }
 
@@ -68,8 +70,8 @@ fun WeekdayForecastCell(
             }
         ) { isExpanded ->
             when {
-                isExpanded -> WeekDayForecastExpanded(forecast = forecast)
-                else -> WeekDayForecastCollapsed(forecast = forecast)
+                isExpanded -> WeekDayForecastExpanded(forecast = forecast, isDarkTheme)
+                else -> WeekDayForecastCollapsed(forecast = forecast, isDarkTheme)
             }
         }
     }
@@ -77,7 +79,8 @@ fun WeekdayForecastCell(
 
 @Composable
 fun WeekDayForecastCollapsed(
-    forecast: WeekDayForecast
+    forecast: WeekDayForecast,
+    isDarkTheme: Boolean
 ) {
     val cellHeight = dimensionResource(id = R.dimen.weekday_forecast_cell_height)
     val cellPadding = dimensionResource(id = R.dimen.weekday_forecast_cell_padding)
@@ -92,7 +95,7 @@ fun WeekDayForecastCollapsed(
     ) {
         Texts.Description(text = stringResource(id = R.string.day, forecast.day))
         Image(
-            painter = painterResource(id = forecast.weather.image()),
+            painter = painterResource(id = forecast.weather.image(isDarkTheme)),
             contentDescription = "",
             modifier = Modifier.fillMaxHeight()
         )
@@ -108,7 +111,8 @@ fun WeekDayForecastCollapsed(
 
 @Composable
 fun WeekDayForecastExpanded(
-    forecast: WeekDayForecast
+    forecast: WeekDayForecast,
+    isDarkTheme: Boolean
 ) {
     val iconSize = dimensionResource(id = R.dimen.weather_icon_size_l)
     val padding = dimensionResource(id = R.dimen.weekday_forecast_cell_padding)
@@ -126,7 +130,7 @@ fun WeekDayForecastExpanded(
         ) {
             Texts.Body(text = "1月 ${forecast.day}日")
             Image(
-                painter = painterResource(id = forecast.weather.image()), "",
+                painter = painterResource(id = forecast.weather.image(isDarkTheme)), "",
                 modifier = Modifier.size(iconSize)
             )
             Texts.Description(text = forecast.weather.description())
@@ -163,7 +167,7 @@ fun WeekDayForecastExpanded(
 @Composable
 fun WeeklyForecastPreview() {
     AppTheme {
-        WeeklyForecast(WeatherBusinessModel.mock().weeklyForecast)
+        WeeklyForecast(WeatherBusinessModel.mock().weeklyForecast, true)
     }
 }
 
@@ -171,7 +175,7 @@ fun WeeklyForecastPreview() {
 @Composable
 fun WeekDatForecastCollapsedPreview() {
     AppTheme {
-        WeekDayForecastCollapsed(forecast = WeatherBusinessModel.mock().weeklyForecast.first())
+        WeekDayForecastCollapsed(forecast = WeatherBusinessModel.mock().weeklyForecast.first(), true)
     }
 }
 
@@ -179,6 +183,6 @@ fun WeekDatForecastCollapsedPreview() {
 @Composable
 fun WeekDatForecastExpandedPreview() {
     AppTheme {
-        WeekDayForecastExpanded(forecast = WeatherBusinessModel.mock().weeklyForecast.first())
+        WeekDayForecastExpanded(forecast = WeatherBusinessModel.mock().weeklyForecast.first(), true)
     }
 }

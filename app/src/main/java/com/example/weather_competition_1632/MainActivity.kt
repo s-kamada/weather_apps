@@ -37,6 +37,7 @@ class MainActivity : ComponentActivity() {
     fun Contents() {
         val buttonPading = dimensionResource(id = R.dimen.button_padding)
         val weatherBusinessModel = remember { mutableStateOf(WeatherBusinessModel.mock()) }//WeatherBusinessModel.mock()
+        val isDarkTheme = remember { mutableStateOf(weatherBusinessModel.value.weather.isDarkTheme()) }
 
         // A surface container using the 'background' color from the theme
         Surface(
@@ -51,7 +52,11 @@ class MainActivity : ComponentActivity() {
             )
 
             IconButton(
-                onClick = { weatherBusinessModel.value = WeatherBusinessModel.mock() },
+                onClick = {
+                    val mock = WeatherBusinessModel.mock()
+                    weatherBusinessModel.value = mock
+                    isDarkTheme.value = mock.weather.isDarkTheme()
+                },
                 modifier = Modifier.padding(buttonPading)
             ) {
                 Icon(painter = painterResource(id = R.drawable.ic_refresh_dark), contentDescription = "")
@@ -60,9 +65,9 @@ class MainActivity : ComponentActivity() {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                WeatherCard(weatherBusinessModel.value)
-                OneDayForecast(weatherBusinessModel.value.oneDayForecast)
-                WeeklyForecast(weatherBusinessModel.value.weeklyForecast)
+                WeatherCard(weatherBusinessModel.value, isDarkTheme.value)
+                OneDayForecast(weatherBusinessModel.value.oneDayForecast, isDarkTheme.value)
+                WeeklyForecast(weatherBusinessModel.value.weeklyForecast, isDarkTheme.value)
             }
         }
     }

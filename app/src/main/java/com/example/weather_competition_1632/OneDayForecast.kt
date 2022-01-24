@@ -18,7 +18,8 @@ import com.example.weather_competition_1632.ui.theme.Texts
 
 @Composable
 fun OneDayForecast(
-    forecast: List<OneHourForecast>
+    forecast: List<OneHourForecast>,
+    isDarkTheme: Boolean
 ) {
     val borderWidth = dimensionResource(id = R.dimen.border_width_xs)
 
@@ -26,14 +27,15 @@ fun OneDayForecast(
         modifier = Modifier.border(borderWidth, Color.Black)
     ) {
         items(forecast) { forecast ->
-            OneHourForecastCell(forecast = forecast)
+            OneHourForecastCell(forecast = forecast, isDarkTheme)
         }
     }
 }
 
 @Composable
 fun OneHourForecastCell(
-    forecast: OneHourForecast
+    forecast: OneHourForecast,
+    isDarkTheme: Boolean
 ) {
     val cellWidth = dimensionResource(id = R.dimen.oneday_forecast_cell_width)
     val cellHeight = dimensionResource(id = R.dimen.oneday_forecast_cell_height)
@@ -49,7 +51,7 @@ fun OneHourForecastCell(
     ) {
         Texts.Description(text = forecast.time)
         Image(
-            painter = painterResource(id = forecast.weather.image()),
+            painter = painterResource(id = forecast.weather.image(isDarkTheme)),
             contentDescription = "",
             modifier = Modifier
                 .fillMaxWidth()
@@ -63,6 +65,6 @@ fun OneHourForecastCell(
 @Composable
 fun OneDayForecastPreview() {
     AppTheme {
-        OneDayForecast(WeatherBusinessModel.mock().oneDayForecast)
+        OneDayForecast(WeatherBusinessModel.mock().oneDayForecast, true)
     }
 }

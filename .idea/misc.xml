@@ -11,6 +11,8 @@
         <entry key="../../../../../layout/compose-model-1642948389256.xml" value="0.3537037037037037" />
         <entry key="../../../../../layout/compose-model-1643009123044.xml" value="0.1675925925925926" />
         <entry key="../../../../../layout/compose-model-1643009513752.xml" value="0.22" />
+        <entry key="../../../../../layout/compose-model-1643016547595.xml" value="0.153028692879915" />
+        <entry key="../../../../../layout/compose-model-1643017203581.xml" value="0.13333333333333333" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.228125" />
         <entry key="app/src/main/res/drawable/ic_cloudy.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_cloudy_light.xml" value="0.1" />
@@ -21,6 +23,8 @@
         <entry key="app/src/main/res/drawable/ic_refresh.xml" value="0.228125" />
         <entry key="app/src/main/res/drawable/ic_refresh_light.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_snowy.xml" value="0.228125" />
+        <entry key="app/src/main/res/drawable/ic_snowy_light.xml" value="0.13333333333333333" />
+        <entry key="app/src/main/res/drawable/ic_stormy_light.xml" value="0.13333333333333333" />
         <entry key="app/src/main/res/drawable/ic_sunny.xml" value="0.228125" />
         <entry key="app/src/main/res/drawable/ic_sunny_light.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_wind_south_west_light.xml" value="0.1" />

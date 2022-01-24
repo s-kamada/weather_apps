@@ -1,6 +1,7 @@
 package com.example.weather_competition_1632.ui.theme
 
 import com.example.weather_competition_1632.R
+import com.example.weather_competition_1632.WeatherBusinessModel
 
 enum class Weather {
     SUNNY,
@@ -61,7 +62,7 @@ data class OneHourForecast(
             return OneHourForecast(
                 "${time}時",
                 Weather.random(),
-                "${(-10..20).random()}℃"
+                "${WeatherBusinessModel.mockTemp()}℃"
             )
         }
     }
@@ -82,8 +83,8 @@ data class WeekDayForecast(
             return WeekDayForecast(
                 date.toString(),
                 Weather.random(),
-                (-10..20).random(),
-                (-10..20).random()
+                WeatherBusinessModel.mockTemp(),
+                WeatherBusinessModel.mockTemp()
             )
         }
     }

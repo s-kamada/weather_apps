@@ -39,7 +39,7 @@ data class WeatherBusinessModel(
             )
         }
 
-        private fun mockTemp(from: Int = -10, to: Int = 20): Int {
+        fun mockTemp(from: Int = -10, to: Int = 20): Int {
             return random(from, to)
         }
 

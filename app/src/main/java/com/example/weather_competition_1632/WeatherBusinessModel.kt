@@ -17,47 +17,54 @@ data class WeatherBusinessModel(
     val oneDayForecast: List<OneHourForecast>,
     val weekDayForecast: List<WeekDayForecast>
 ) {
-    fun mock(): WeatherBusinessModel {
-        return WeatherBusinessModel(
-            location = "青森市",
-            weather = Weather.random(),
-            temperature = mockTemp(),
-            maxTemp = mockTemp(),
-            minTemp = mockTemp(),
-            pressure = mockPressure(),
-            humidity = mockHumidity(),
-            windDirection = "南西",
-            windSpeed = 0.5f,
-            oneDayForecast = mockOneDayForecast(),
-            weekDayForecast = mockWeeklyForecast()
-        )
-    }
 
-    fun mockTemp(from: Int = -10, to: Int = 20): Int {
-        return random(from, to)
-    }
+    companion object {
 
-    fun mockPressure(from: Int = 1000, to: Int = 1020): Int {
-        return random(from, to)
-    }
-
-    fun mockHumidity(from: Int = 40, to: Int = 70): Int {
-        return random(from, to)
-    }
-
-    fun mockOneDayForecast(): List<OneHourForecast> {
-        return (0..24).map { hour ->
-            OneHourForecast.getRandom(hour)
+        /**
+         * デモのために天気のmockを作成する
+         */
+        fun mock(): WeatherBusinessModel {
+            return WeatherBusinessModel(
+                location = "青森市",
+                weather = Weather.random(),
+                temperature = mockTemp(),
+                maxTemp = mockTemp(),
+                minTemp = mockTemp(),
+                pressure = mockPressure(),
+                humidity = mockHumidity(),
+                windDirection = "南西",
+                windSpeed = 0.5f,
+                oneDayForecast = mockOneDayForecast(),
+                weekDayForecast = mockWeeklyForecast()
+            )
         }
-    }
 
-    fun mockWeeklyForecast(): List<WeekDayForecast> {
-        return (1..7).map { day ->
-            WeekDayForecast.getRandom(day)
+        private fun mockTemp(from: Int = -10, to: Int = 20): Int {
+            return random(from, to)
         }
-    }
 
-    private fun random(from: Int, to: Int): Int {
-        return (from..to).random()
+        private fun mockPressure(from: Int = 1000, to: Int = 1020): Int {
+            return random(from, to)
+        }
+
+        private fun mockHumidity(from: Int = 40, to: Int = 70): Int {
+            return random(from, to)
+        }
+
+        private fun mockOneDayForecast(): List<OneHourForecast> {
+            return (0..24).map { hour ->
+                OneHourForecast.getRandom(hour)
+            }
+        }
+
+        private fun mockWeeklyForecast(): List<WeekDayForecast> {
+            return (1..7).map { day ->
+                WeekDayForecast.getRandom(day)
+            }
+        }
+
+        private fun random(from: Int, to: Int): Int {
+            return (from..to).random()
+        }
     }
 }

@@ -69,7 +69,7 @@ data class OneHourForecast(
 }
 
 data class WeekDayForecast(
-    val day: String,
+    val day: Int,
     val weather: Weather,
     val maxTemperature: Int,
     val minTemperature: Int
@@ -81,7 +81,7 @@ data class WeekDayForecast(
 
         fun getRandom(date: Int): WeekDayForecast {
             return WeekDayForecast(
-                date.toString(),
+                date,
                 Weather.random(),
                 WeatherBusinessModel.mockTemp(),
                 WeatherBusinessModel.mockTemp()

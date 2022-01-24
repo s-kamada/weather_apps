@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -23,22 +24,25 @@ import com.example.weather_competition_1632.ui.theme.*
 fun WeatherCard(
     weather: WeatherBusinessModel
 ) {
+    val cardElevation = dimensionResource(id = R.dimen.card_contents_padding)
+    val cardPadding = dimensionResource(id = R.dimen.card_padding)
+    val cardContentsPadding = dimensionResource(id = R.dimen.card_contents_padding)
+    val textHeight = dimensionResource(id = R.dimen.text_height_l)
     Card(
         backgroundColor = Color(0x66ffffff),
-        elevation = 4.dp,
+        elevation = cardElevation,
         modifier = Modifier
-            .border(0.dp, Color.Transparent)
-            .padding(80.dp)
+            .padding(cardPadding)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(cardContentsPadding)
         ) {
             Texts.Body(text = weather.location)
             ImageWithText(
                 image = weather.weather.image(),
                 text = weather.weather.description(),
-                height = 24.dp,
+                height = textHeight,
                 style = Texts.Style.BODY
             )
             Texts.Header(text = stringResource(id = R.string.temperature_celsius, weather.temperature))
@@ -47,7 +51,7 @@ fun WeatherCard(
             ImageWithText(
                 image = R.drawable.ic_wind_soutuheast,
                 text = stringResource(id = R.string.wind_direction_speed, weather.windDirection, weather.windSpeed),
-                height = 24.dp,
+                height = textHeight,
                 style = Texts.Style.DESCRIPTION
             )
         }
@@ -61,11 +65,12 @@ fun ImageWithText(
     height: Dp,
     style: Texts.Style
 ) {
+    val textWidth = dimensionResource(id = R.dimen.text_width_xxl)
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-            .size(100.dp, height)
+            .size(textWidth, height)
     ) {
         Image(
             painterResource(image),
@@ -83,9 +88,10 @@ fun ImageWithText(
 fun OneDayForecast(
     forecast: List<OneHourForecast>
 ) {
+    val borderWidth = dimensionResource(id = R.dimen.border_width_xs)
 
     LazyRow(
-        modifier = Modifier.border(1.dp, Color.Black)
+        modifier = Modifier.border(borderWidth, Color.Black)
     ) {
         items(forecast) { forecast ->
             OneHourForecastCell(forecast = forecast)
@@ -97,12 +103,17 @@ fun OneDayForecast(
 fun OneHourForecastCell(
     forecast: OneHourForecast
 ) {
+    val cellWidth = dimensionResource(id = R.dimen.oneday_forecast_cell_width)
+    val cellHeight = dimensionResource(id = R.dimen.oneday_forecast_cell_height)
+    val cellPadding = dimensionResource(id = R.dimen.oneday_forecast_cell_padding)
+    val imagePadding = dimensionResource(id = R.dimen.oneday_forecast_cell_image_padding)
+
     Column(
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .size(52.dp, 92.dp)
-            .padding(8.dp)
+            .size(cellWidth, cellHeight)
+            .padding(cellPadding)
     ) {
         Texts.Description(text = forecast.time)
         Image(
@@ -110,7 +121,7 @@ fun OneHourForecastCell(
             contentDescription = "",
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(4.dp)
+                .padding(imagePadding)
         )
         Texts.Description(text = forecast.temperature)
     }
@@ -120,11 +131,12 @@ fun OneHourForecastCell(
 fun WeeklyForecast(
     forecast: List<WeekDayForecast>
 ) {
+    val borderWidth = dimensionResource(id = R.dimen.border_width_xs)
 
     LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
-            .border(1.dp, Color.Black)
+            .border(borderWidth, Color.Black)
     ) {
         items(forecast) { forecast ->
             WeekdayForecastCell(forecast = forecast)
@@ -136,13 +148,16 @@ fun WeeklyForecast(
 fun WeekdayForecastCell(
     forecast: WeekDayForecast
 ) {
+    val cellHeight = dimensionResource(id = R.dimen.weekday_forecast_cell_height)
+    val cellPadding = dimensionResource(id = R.dimen.weekday_forecast_cell_padding)
+
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
-            .height(42.dp)
-            .padding(8.dp)
+            .height(cellHeight)
+            .padding(cellPadding)
     ) {
         Texts.Description(text = stringResource(id = R.string.day, forecast.day))
         Image(

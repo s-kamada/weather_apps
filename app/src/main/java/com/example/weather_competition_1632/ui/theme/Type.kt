@@ -7,9 +7,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 // Set of Material typography styles to start with
+val GeneralFont = FontFamily.Default
 val Typography = Typography(
+    h3 = TextStyle(
+        fontFamily = GeneralFont,
+        fontWeight = FontWeight.Normal,
+        fontSize = 48.sp,
+        letterSpacing = 0.sp
+    ),
+    h6 = TextStyle(
+        fontFamily = GeneralFont,   
+        fontWeight = FontWeight.Medium,
+        fontSize = 20.sp,
+        letterSpacing = 0.15.sp
+    ),
     body1 = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = GeneralFont,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     )

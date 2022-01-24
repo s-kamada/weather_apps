@@ -22,6 +22,7 @@ fun WeatherCard(
     val cardPadding = dimensionResource(id = R.dimen.card_padding)
     val cardContentsPadding = dimensionResource(id = R.dimen.card_contents_padding)
     val textHeight = dimensionResource(id = R.dimen.text_height_l)
+
     Card(
         backgroundColor = Color(0xffffffff),
         elevation = cardElevation,

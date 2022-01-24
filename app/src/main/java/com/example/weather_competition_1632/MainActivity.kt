@@ -36,6 +36,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun Contents() {
         val buttonPading = dimensionResource(id = R.dimen.button_padding)
+        // TODO: Create ViewModel and move them
         val weatherBusinessModel = remember { mutableStateOf(WeatherBusinessModel.mock()) }//WeatherBusinessModel.mock()
         val isDarkTheme = remember { mutableStateOf(weatherBusinessModel.value.weather.isDarkTheme()) }
 

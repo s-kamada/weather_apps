@@ -8,15 +8,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.weather_competition_1632.ui.theme.AppTheme
-import com.example.weather_competition_1632.ui.theme.Texts
-import com.example.weather_competition_1632.ui.theme.Weather
-import java.util.*
+import com.example.weather_competition_1632.ui.theme.*
 
 @Composable
 fun WeatherCard(prefectureName: String) {
@@ -105,7 +101,9 @@ fun WeeklyForecast() {
         WeekDayForecast.getRandom(date)
     }
 
-    LazyColumn {
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth()
+    ) {
         items(forecasts) { forecast ->
             WeekdayForecastCell(forecast = forecast)
         }
@@ -119,7 +117,7 @@ fun WeekdayForecastCell(
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.size(300.dp, 30.dp)
+        modifier = Modifier.fillMaxWidth().height(30.dp)
     ) {
         Texts.Description(text = "${forecast.day}日")
         Image(
@@ -128,49 +126,6 @@ fun WeekdayForecastCell(
             modifier = Modifier.fillMaxHeight()
         )
         Texts.Description(text = "最高 ${forecast.maxTemperature}℃ / 最低 ${forecast.minTemperature}℃")
-    }
-}
-
-data class OneHourForecast(
-    val time: String,
-    val weather: Weather,
-    val temperature: String
-) {
-
-    /**
-     * デモのためランダムの天気を生成する
-     */
-    companion object {
-
-        fun getRandom(time: Int): OneHourForecast {
-            return OneHourForecast(
-                "${time}時",
-                Weather.random(),
-                "${(-10..20).random()}℃"
-            )
-        }
-    }
-}
-
-data class WeekDayForecast(
-    val day: String,
-    val weather: Weather,
-    val maxTemperature: Int,
-    val minTemperature: Int
-) {
-    /**
-     * デモのためランダムの天気を生成する
-     */
-    companion object {
-
-        fun getRandom(date: Int): WeekDayForecast {
-            return WeekDayForecast(
-                date.toString(),
-                Weather.random(),
-                (-10..20).random(),
-                (-10..20).random()
-            )
-        }
     }
 }
 
@@ -195,6 +150,5 @@ fun OneDayForecastPreview() {
 fun WeeklyForecastPreview() {
     AppTheme {
         WeeklyForecast()
-//        WeekdayForecastCell()
     }
 }

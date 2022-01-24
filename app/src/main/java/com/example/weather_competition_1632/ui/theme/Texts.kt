@@ -25,7 +25,7 @@ object Texts {
     fun Header(text: String) {
         Text(
             text = text,
-            style = MaterialTheme.typography.h4,
+            style = MaterialTheme.typography.h3,
         )
     }
 
@@ -33,7 +33,7 @@ object Texts {
     fun Body(text: String) {
         Text(
             text = text,
-            style = MaterialTheme.typography.body1
+            style = MaterialTheme.typography.h6
         )
     }
 
@@ -41,7 +41,7 @@ object Texts {
     fun Description(text: String) {
         Text(
             text = text,
-            style = MaterialTheme.typography.caption
+            style = MaterialTheme.typography.body1
         )
     }
 }

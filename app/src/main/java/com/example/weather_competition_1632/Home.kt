@@ -1,8 +1,6 @@
 package com.example.weather_competition_1632
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -13,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -26,13 +23,13 @@ fun WeatherCard(
     weather: WeatherBusinessModel
 ) {
     Card(
-        border = BorderStroke(0.dp, Color.Transparent),
         backgroundColor = Color(0x66ffffff),
         elevation = 4.dp,
-        modifier = Modifier.border(0.dp, Color.Transparent)
+        modifier = Modifier.border(0.dp, Color.Transparent).padding(80.dp)
     ) {
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(16.dp)
         ) {
             Texts.Body(text = weather.location)
             ImageWithText(
@@ -47,7 +44,7 @@ fun WeatherCard(
             ImageWithText(
                 image = R.drawable.ic_wind_soutuheast,
                 text = "${weather.windDirection} ${weather.windSpeed} m/s",
-                height = 16.dp,
+                height = 24.dp,
                 style = Texts.Style.DESCRIPTION
             )
         }
@@ -100,13 +97,13 @@ fun OneHourForecastCell(
     Column(
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.size(28.dp, 60.dp)
+        modifier = Modifier.size(52.dp, 92.dp).padding(8.dp)
     ) {
         Texts.Description(text = forecast.time)
         Image(
             painter = painterResource(id = forecast.weather.image()),
             contentDescription = "",
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth().padding(4.dp)
         )
         Texts.Description(text = forecast.temperature)
     }
@@ -137,7 +134,8 @@ fun WeekdayForecastCell(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
-            .height(30.dp)
+            .height(42.dp)
+            .padding(8.dp)
     ) {
         Texts.Description(text = "${forecast.day}日")
         Image(

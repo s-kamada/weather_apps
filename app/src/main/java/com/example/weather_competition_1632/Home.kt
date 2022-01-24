@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -25,7 +26,9 @@ fun WeatherCard(
     Card(
         backgroundColor = Color(0x66ffffff),
         elevation = 4.dp,
-        modifier = Modifier.border(0.dp, Color.Transparent).padding(80.dp)
+        modifier = Modifier
+            .border(0.dp, Color.Transparent)
+            .padding(80.dp)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -38,12 +41,12 @@ fun WeatherCard(
                 height = 24.dp,
                 style = Texts.Style.BODY
             )
-            Texts.Header(text = "${weather.temperature} ℃")
-            Texts.Description(text = "最高 ${weather.maxTemp}℃ / 最低 ${weather.minTemp}℃")
-            Texts.Description(text = "${weather.pressure} hPa ${weather.humidity}%")
+            Texts.Header(text = stringResource(id = R.string.temperature_celsius, weather.temperature))
+            Texts.Description(text = stringResource(id = R.string.temperature_max_min, weather.maxTemp, weather.minTemp))
+            Texts.Description(text = stringResource(id = R.string.pressure_and_humidity, weather.pressure, weather.humidity))
             ImageWithText(
                 image = R.drawable.ic_wind_soutuheast,
-                text = "${weather.windDirection} ${weather.windSpeed} m/s",
+                text = stringResource(id = R.string.wind_direction_speed, weather.windDirection, weather.windSpeed),
                 height = 24.dp,
                 style = Texts.Style.DESCRIPTION
             )
@@ -97,13 +100,17 @@ fun OneHourForecastCell(
     Column(
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.size(52.dp, 92.dp).padding(8.dp)
+        modifier = Modifier
+            .size(52.dp, 92.dp)
+            .padding(8.dp)
     ) {
         Texts.Description(text = forecast.time)
         Image(
             painter = painterResource(id = forecast.weather.image()),
             contentDescription = "",
-            modifier = Modifier.fillMaxWidth().padding(4.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(4.dp)
         )
         Texts.Description(text = forecast.temperature)
     }
@@ -137,13 +144,13 @@ fun WeekdayForecastCell(
             .height(42.dp)
             .padding(8.dp)
     ) {
-        Texts.Description(text = "${forecast.day}日")
+        Texts.Description(text = stringResource(id = R.string.day, forecast.day))
         Image(
             painter = painterResource(id = forecast.weather.image()),
             contentDescription = "",
             modifier = Modifier.fillMaxHeight()
         )
-        Texts.Description(text = "最高 ${forecast.maxTemperature}℃ / 最低 ${forecast.minTemperature}℃")
+        Texts.Description(text = stringResource(id = R.string.temperature_max_min, forecast.maxTemperature, forecast.minTemperature))
     }
 }
 

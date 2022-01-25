@@ -122,6 +122,7 @@ fun WeekDayForecastExpanded(
     val iconSize = dimensionResource(id = R.dimen.weather_icon_size_l)
     val padding = dimensionResource(id = R.dimen.weekday_forecast_cell_padding)
     val contentsPadding = dimensionResource(id = R.dimen.weekday_forecast_contents_padding)
+    val color = if (isDarkTheme) Color.Black else Color.White
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -135,12 +136,12 @@ fun WeekDayForecastExpanded(
                 .fillMaxWidth()
                 .padding(contentsPadding)
         ) {
-            Texts.Body(text = "1月 ${forecast.day}日")
+            Texts.Body(text = "1月 ${forecast.day}日", color = color)
             Image(
                 painter = painterResource(id = forecast.weather.image(isDarkTheme)), "",
                 modifier = Modifier.size(iconSize)
             )
-            Texts.Description(text = forecast.weather.description())
+            Texts.Description(text = forecast.weather.description(), color = color)
         }
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -149,7 +150,8 @@ fun WeekDayForecastExpanded(
                 .padding(contentsPadding)
         ) {
             Texts.Description(
-                text = stringResource(id = R.string.temperature_max_min, forecast.maxTemperature, forecast.minTemperature)
+                text = stringResource(id = R.string.temperature_max_min, forecast.maxTemperature, forecast.minTemperature),
+                color = color
             )
         }
         Row(
@@ -159,7 +161,8 @@ fun WeekDayForecastExpanded(
                 .padding(contentsPadding)
         ) {
             Texts.Description(
-                text = stringResource(id = R.string.pressure_and_humidity, forecast.pressure, forecast.humidity)
+                text = stringResource(id = R.string.pressure_and_humidity, forecast.pressure, forecast.humidity),
+                color = color
             )
         }
         Row(
@@ -169,7 +172,8 @@ fun WeekDayForecastExpanded(
                 .padding(contentsPadding)
         ) {
             Texts.Description(
-                text = stringResource(id = R.string.wind_direction_speed, forecast.windDirection, forecast.windSpeed)
+                text = stringResource(id = R.string.wind_direction_speed, forecast.windDirection, forecast.windSpeed),
+                color = color
             )
         }
     }

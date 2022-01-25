@@ -22,7 +22,7 @@ val DarkTypography = Typography(
     ),
     h6 = TextStyle(
         fontFamily = GeneralFont,
-        fontWeight = FontWeight.Medium,
+        fontWeight = FontWeight.Bold,
         fontSize = 20.sp,
         letterSpacing = 0.15.sp,
         color = DarkFontColor
@@ -50,14 +50,14 @@ val DarkTypography = Typography(
 val LightTypography = Typography(
     h3 = TextStyle(
         fontFamily = GeneralFont,
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.Bold,
         fontSize = 48.sp,
         letterSpacing = 0.sp,
         color = LightFontColor
     ),
     h6 = TextStyle(
         fontFamily = GeneralFont,
-        fontWeight = FontWeight.Medium,
+        fontWeight = FontWeight.Bold,
         fontSize = 20.sp,
         letterSpacing = 0.15.sp,
         color = LightFontColor

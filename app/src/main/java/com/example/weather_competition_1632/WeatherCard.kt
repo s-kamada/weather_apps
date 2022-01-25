@@ -38,7 +38,7 @@ fun WeatherCard(
 
             Texts.Body(text = weather.location)
             ImageWithText(
-                image = weather.weather.image(true),
+                image = weather.weather.image(),
                 text = weather.weather.description(),
                 height = textHeight,
                 style = Texts.Style.BODY

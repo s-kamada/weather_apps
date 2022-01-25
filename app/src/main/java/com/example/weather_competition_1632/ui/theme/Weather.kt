@@ -20,20 +20,13 @@ enum class Weather {
         }
     }
 
-    fun isDarkTheme(): Boolean {
+    fun image(): Int {
         return when (this) {
-            SUNNY, CLOUDY, SNOWY -> true
-            STORMY, RAINY -> false
-        }
-    }
-
-    fun image(isDark: Boolean): Int {
-        return when (this) {
-            SUNNY -> if (isDark) { R.drawable.ic_sunny_dark } else { R.drawable.ic_sunny_light }
-            CLOUDY -> if (isDark) { R.drawable.ic_cloudy_dark } else { R.drawable.ic_cloudy_light }
-            RAINY -> if (isDark) { R.drawable.ic_rainy_dark } else { R.drawable.ic_rainy_light }
-            SNOWY ->  if (isDark) { R.drawable.ic_snowy_dark } else { R.drawable.ic_snowy_light }
-            STORMY ->  if (isDark) { R.drawable.ic_heavy_rainy_dark } else { R.drawable.ic_stormy_light }
+            SUNNY -> R.drawable.ic_sunny_dark
+            CLOUDY -> R.drawable.ic_cloudy_dark
+            RAINY -> R.drawable.ic_rainy_dark
+            SNOWY ->  R.drawable.ic_snowy_dark
+            STORMY ->  R.drawable.ic_heavy_rainy_dark
         }
     }
 

@@ -21,7 +21,6 @@ import com.example.weather_competition_1632.ui.theme.Texts
 @Composable
 fun OneDayForecast(
     forecast: List<OneHourForecast>,
-    isDarkTheme: Boolean
 ) {
     val borderWidth = dimensionResource(id = R.dimen.border_width_xs)
 
@@ -29,7 +28,7 @@ fun OneDayForecast(
         modifier = Modifier.border(borderWidth, Color.Black).background(Color((0xaaeeeeee)))
     ) {
         items(forecast) { forecast ->
-            OneHourForecastCell(forecast = forecast, isDarkTheme)
+            OneHourForecastCell(forecast = forecast)
         }
     }
 }
@@ -37,13 +36,11 @@ fun OneDayForecast(
 @Composable
 fun OneHourForecastCell(
     forecast: OneHourForecast,
-    isDarkTheme: Boolean
 ) {
     val cellWidth = dimensionResource(id = R.dimen.oneday_forecast_cell_width)
     val cellHeight = dimensionResource(id = R.dimen.oneday_forecast_cell_height)
     val cellPadding = dimensionResource(id = R.dimen.oneday_forecast_cell_padding)
     val imagePadding = dimensionResource(id = R.dimen.oneday_forecast_cell_image_padding)
-    val color = if(isDarkTheme) Color.Black else Color.White
 
     Column(
         verticalArrangement = Arrangement.SpaceBetween,
@@ -52,15 +49,15 @@ fun OneHourForecastCell(
             .size(cellWidth, cellHeight)
             .padding(cellPadding)
     ) {
-        Texts.Description(text = forecast.time, color = color)
+        Texts.Description(text = forecast.time)
         Image(
-            painter = painterResource(id = forecast.weather.image(isDarkTheme)),
+            painter = painterResource(id = forecast.weather.image()),
             contentDescription = "",
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(imagePadding)
         )
-        Texts.Description(text = forecast.temperature, color = color)
+        Texts.Description(text = forecast.temperature)
     }
 }
 
@@ -68,6 +65,6 @@ fun OneHourForecastCell(
 @Composable
 fun OneDayForecastPreview() {
     AppTheme {
-        OneDayForecast(WeatherBusinessModel.mock().oneDayForecast, true)
+        OneDayForecast(WeatherBusinessModel.mock().oneDayForecast)
     }
 }

@@ -36,10 +36,9 @@ class MainActivity : ComponentActivity() {
         val buttonPading = dimensionResource(id = R.dimen.button_padding)
         // TODO: Create ViewModel and move them
         val weatherBusinessModel = remember { mutableStateOf(WeatherBusinessModel.mock()) }//WeatherBusinessModel.mock()
-        val isDarkTheme = remember { mutableStateOf(weatherBusinessModel.value.weather.isDarkTheme()) }
 
         // A surface container using the 'background' color from the theme
-        AppTheme(isDarkTheme.value) {
+        AppTheme {
             Surface(
                 color = MaterialTheme.colors.background,
             ) {
@@ -55,7 +54,6 @@ class MainActivity : ComponentActivity() {
                     onClick = {
                         val mock = WeatherBusinessModel.mock()
                         weatherBusinessModel.value = mock
-                        isDarkTheme.value = mock.weather.isDarkTheme()
                     },
                     modifier = Modifier.padding(buttonPading)
                 ) {
@@ -69,8 +67,8 @@ class MainActivity : ComponentActivity() {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     WeatherCard(weatherBusinessModel.value)
-                    OneDayForecast(weatherBusinessModel.value.oneDayForecast, isDarkTheme.value)
-                    WeeklyForecast(weatherBusinessModel.value.weeklyForecast, isDarkTheme.value)
+                    OneDayForecast(weatherBusinessModel.value.oneDayForecast)
+                    WeeklyForecast(weatherBusinessModel.value.weeklyForecast)
                 }
             }
         }

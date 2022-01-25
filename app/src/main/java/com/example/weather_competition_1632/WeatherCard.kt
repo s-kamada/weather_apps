@@ -19,10 +19,10 @@ import com.example.weather_competition_1632.ui.theme.*
 fun WeatherCard(
     weather: WeatherBusinessModel
 ) {
-    val cardElevation = dimensionResource(id = R.dimen.card_contents_padding)
-    val cardPadding = dimensionResource(id = R.dimen.card_padding)
-    val cardContentsPadding = dimensionResource(id = R.dimen.card_contents_padding)
-    val textHeight = dimensionResource(id = R.dimen.text_height_l)
+    val cardElevation = dimensionResource(R.dimen.card_contents_padding)
+    val cardPadding = dimensionResource(R.dimen.card_padding)
+    val cardContentsPadding = dimensionResource(R.dimen.card_contents_padding)
+    val textHeight = dimensionResource(R.dimen.text_height_l)
 
     Card(
         backgroundColor = Color(0xaaf2f2f2),
@@ -46,18 +46,18 @@ fun WeatherCard(
 
             Spacer(modifier = Modifier.size(4.dp))
 
-            Texts.Header(text = stringResource(id = R.string.temperature_celsius, weather.temperature))
+            Texts.Header(text = stringResource(R.string.temperature_celsius, weather.temperature))
 
             Spacer(modifier = Modifier.size(4.dp))
 
-            Texts.Description(text = stringResource(id = R.string.temperature_max_min, weather.maxTemp, weather.minTemp))
-            Texts.Description(text = stringResource(id = R.string.pressure_and_humidity, weather.pressure, weather.humidity))
+            Texts.Description(text = stringResource(R.string.temperature_max_min, weather.maxTemp, weather.minTemp))
+            Texts.Description(text = stringResource(R.string.pressure_and_humidity, weather.pressure, weather.humidity))
 
             Spacer(modifier = Modifier.size(4.dp))
 
             ImageWithText(
                 image = R.drawable.ic_wind_soutuheast_dark,
-                text = stringResource(id = R.string.wind_direction_speed, weather.windDirection, weather.windSpeed),
+                text = stringResource(R.string.wind_direction_speed, weather.windDirection, weather.windSpeed),
                 height = textHeight,
                 style = Texts.Style.DESCRIPTION
             )
@@ -74,7 +74,7 @@ fun ImageWithText(
     height: Dp,
     style: Texts.Style
 ) {
-    val textWidth = dimensionResource(id = R.dimen.text_width_xxl)
+    val textWidth = dimensionResource(R.dimen.text_width_xxl)
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,

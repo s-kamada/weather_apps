@@ -28,7 +28,7 @@ import com.example.weather_competition_1632.ui.theme.WeekDayForecast
 fun WeeklyForecast(
     forecast: List<WeekDayForecast>,
 ) {
-    val borderWidth = dimensionResource(id = R.dimen.border_width_xs)
+    val borderWidth = dimensionResource(R.dimen.border_width_xs)
 
     LazyColumn(
         modifier = Modifier
@@ -81,14 +81,14 @@ fun WeekdayForecastCell(
 fun WeekDayForecastCollapsed(
     forecast: WeekDayForecast,
 ) {
-    val cellHeight = dimensionResource(id = R.dimen.weekday_forecast_cell_height)
-    val cellPadding = dimensionResource(id = R.dimen.weekday_forecast_cell_padding)
+    val cellHeight = dimensionResource(R.dimen.weekday_forecast_cell_height)
+    val cellPadding = dimensionResource(R.dimen.weekday_forecast_cell_padding)
 
     val dayString = when (forecast.day % 10) {
-        1 -> stringResource(id = R.string.day_st, forecast.day)
-        2 -> stringResource(id = R.string.day_nd, forecast.day)
-        3 -> stringResource(id = R.string.day_rd, forecast.day)
-        else -> stringResource(id = R.string.day_th, forecast.day)
+        1 -> stringResource(R.string.day_st, forecast.day)
+        2 -> stringResource(R.string.day_nd, forecast.day)
+        3 -> stringResource(R.string.day_rd, forecast.day)
+        else -> stringResource(R.string.day_th, forecast.day)
     }
 
     Row(
@@ -103,13 +103,13 @@ fun WeekDayForecastCollapsed(
             text = dayString,
         )
         Image(
-            painter = painterResource(id = forecast.weather.image()),
+            painter = painterResource(forecast.weather.image()),
             contentDescription = "",
             modifier = Modifier.fillMaxHeight()
         )
         Texts.Description(
             text = stringResource(
-                id = R.string.temperature_max_min,
+                R.string.temperature_max_min,
                 forecast.maxTemperature,
                 forecast.minTemperature
             ),

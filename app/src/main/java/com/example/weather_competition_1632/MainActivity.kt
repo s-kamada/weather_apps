@@ -33,9 +33,9 @@ class MainActivity : ComponentActivity() {
     @ExperimentalAnimationApi
     @Composable
     fun Contents() {
-        val buttonPading = dimensionResource(id = R.dimen.button_padding)
+        val buttonPading = dimensionResource(R.dimen.button_padding)
         // TODO: Create ViewModel and move them
-        val weatherBusinessModel = remember { mutableStateOf(WeatherBusinessModel.mock()) }//WeatherBusinessModel.mock()
+        val weatherBusinessModel = remember { mutableStateOf(WeatherBusinessModel.mock()) }
 
         // A surface container using the 'background' color from the theme
         AppTheme {

@@ -12,6 +12,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.example.weather_competition_1632.ui.theme.*
 
 @Composable
@@ -24,7 +25,7 @@ fun WeatherCard(
     val textHeight = dimensionResource(id = R.dimen.text_height_l)
 
     Card(
-        backgroundColor = Color(0xffffffff),
+        backgroundColor = Color(0xaaf2f2f2),
         elevation = cardElevation,
         modifier = Modifier
             .padding(cardPadding)
@@ -33,6 +34,8 @@ fun WeatherCard(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(cardContentsPadding)
         ) {
+            Spacer(modifier = Modifier.size(8.dp))
+
             Texts.Body(text = weather.location)
             ImageWithText(
                 image = weather.weather.image(true),
@@ -40,15 +43,26 @@ fun WeatherCard(
                 height = textHeight,
                 style = Texts.Style.BODY
             )
+
+            Spacer(modifier = Modifier.size(4.dp))
+
             Texts.Header(text = stringResource(id = R.string.temperature_celsius, weather.temperature))
+
+            Spacer(modifier = Modifier.size(4.dp))
+
             Texts.Description(text = stringResource(id = R.string.temperature_max_min, weather.maxTemp, weather.minTemp))
             Texts.Description(text = stringResource(id = R.string.pressure_and_humidity, weather.pressure, weather.humidity))
+
+            Spacer(modifier = Modifier.size(4.dp))
+
             ImageWithText(
                 image = R.drawable.ic_wind_soutuheast_dark,
                 text = stringResource(id = R.string.wind_direction_speed, weather.windDirection, weather.windSpeed),
                 height = textHeight,
                 style = Texts.Style.DESCRIPTION
             )
+
+            Spacer(modifier = Modifier.size(8.dp))
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.weather_competition_1632
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -12,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.weather_competition_1632.ui.theme.AppTheme
 import com.example.weather_competition_1632.ui.theme.OneHourForecast
 import com.example.weather_competition_1632.ui.theme.Texts
@@ -24,7 +26,7 @@ fun OneDayForecast(
     val borderWidth = dimensionResource(id = R.dimen.border_width_xs)
 
     LazyRow(
-        modifier = Modifier.border(borderWidth, Color.Black)
+        modifier = Modifier.border(borderWidth, Color.Black).background(Color((0xaaeeeeee)))
     ) {
         items(forecast) { forecast ->
             OneHourForecastCell(forecast = forecast, isDarkTheme)

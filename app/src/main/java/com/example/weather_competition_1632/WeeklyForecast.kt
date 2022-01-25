@@ -4,6 +4,7 @@ import androidx.compose.animation.*
 import androidx.compose.animation.core.keyframes
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -34,6 +35,7 @@ fun WeeklyForecast(
         modifier = Modifier
             .fillMaxWidth()
             .border(borderWidth, Color.Black)
+            .background(Color(0xaaeeeeee))
     ) {
         items(forecast) { forecast ->
             WeekdayForecastCell(forecast = forecast, isDarkTheme)
@@ -86,6 +88,13 @@ fun WeekDayForecastCollapsed(
     val cellPadding = dimensionResource(id = R.dimen.weekday_forecast_cell_padding)
     val color = if (isDarkTheme) Color.Black else Color.White
 
+    val dayString = when (forecast.day % 10) {
+        1 -> stringResource(id = R.string.day_st, forecast.day)
+        2 -> stringResource(id = R.string.day_nd, forecast.day)
+        3 -> stringResource(id = R.string.day_rd, forecast.day)
+        else -> stringResource(id = R.string.day_th, forecast.day)
+    }
+
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -95,7 +104,7 @@ fun WeekDayForecastCollapsed(
             .padding(cellPadding)
     ) {
         Texts.Description(
-            text = stringResource(id = R.string.day, forecast.day),
+            text = dayString,
             color = color
         )
         Image(
@@ -136,7 +145,7 @@ fun WeekDayForecastExpanded(
                 .fillMaxWidth()
                 .padding(contentsPadding)
         ) {
-            Texts.Body(text = "1月 ${forecast.day}日", color = color)
+            Texts.Body(text = "Jan. ${forecast.day}", color = color)
             Image(
                 painter = painterResource(id = forecast.weather.image(isDarkTheme)), "",
                 modifier = Modifier.size(iconSize)

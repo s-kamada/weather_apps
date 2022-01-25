@@ -1,9 +1,12 @@
 <resources>
-    <string name="app_name">weather_competition</string>
+    <string name="app_name">Forecasts</string>
 
     <string name="temperature_celsius">%1$d ℃</string>
-    <string name="temperature_max_min">最高 %1$d ℃ / 最低 %2$d ℃</string>
+    <string name="temperature_max_min">%1$d ℃ / %2$d ℃</string>
     <string name="pressure_and_humidity">%1$d hPa %2$d %%</string>
     <string name="wind_direction_speed">%1$s %2$.1f m/s</string>
-    <string name="day">%d日</string>
+    <string name="day_st">%d st</string>
+    <string name="day_nd">%d nd</string>
+    <string name="day_rd">%d rd</string>
+    <string name="day_th">%d th</string>
 </resources>

@@ -7,13 +7,13 @@
     <dimen name="weather_icon_size_m">34dp</dimen>
 
     <dimen name="card_elevation">16dp</dimen>
-    <dimen name="card_padding">80dp</dimen>
-    <dimen name="card_contents_padding">16dp</dimen>
+    <dimen name="card_padding">120dp</dimen>
+    <dimen name="card_contents_padding">8dp</dimen>
     <dimen name="cell_padding">2dp</dimen>
 
-    <dimen name="oneday_forecast_cell_width">52dp</dimen>
-    <dimen name="oneday_forecast_cell_height">92dp</dimen>
-    <dimen name="oneday_forecast_cell_padding">8dp</dimen>
+    <dimen name="oneday_forecast_cell_width">64dp</dimen>
+    <dimen name="oneday_forecast_cell_height">116dp</dimen>
+    <dimen name="oneday_forecast_cell_padding">12dp</dimen>
     <dimen name="oneday_forecast_cell_image_padding">4dp</dimen>
 
     <dimen name="weekday_forecast_cell_height">66dp</dimen>

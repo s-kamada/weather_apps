@@ -67,7 +67,7 @@ data class OneHourForecast(
 
         fun getRandom(time: Int): OneHourForecast {
             return OneHourForecast(
-                "${time}時",
+                "${time} AM",
                 Weather.random(),
                 "${WeatherBusinessModel.mockTemp()}℃"
             )
